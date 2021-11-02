@@ -81,6 +81,8 @@ local on_attach = function(client, bufnr)
     'ﬦ', -- Operator
     '', -- TypeParameter
   }
+
+  print('Attaching LSP: ' .. client.name)
 end
 
 
@@ -100,9 +102,15 @@ nvim_lsp.tsserver.setup {
   capabilities = capabilities
 }
 
-nvim_lsp.solargraph.setup{}
-
-nvim_lsp.sorbet.setup{}
+nvim_lsp.solargraph.setup {
+  cmd = { "solargraph", "stdio" },
+  filetypes = { "ruby" },
+  init_options = { formatting = true },
+  settings = { solargraph = { diagnostics = true } },
+  on_attach = on_attach,
+  capabilities = capabilities,
+  flags = { debounce_text_changes = 100 },
+}
 
 nvim_lsp.jsonls.setup{}
 
@@ -114,7 +122,7 @@ nvim_lsp.graphql.setup{}
 
 nvim_lsp.diagnosticls.setup {
   on_attach = on_attach,
-  filetypes = { 'javascript', 'javascriptreact', 'json', 'typescript', 'typescriptreact', 'css', 'less', 'scss', 'markdown', 'pandoc' },
+  filetypes = { 'ruby', 'javascript', 'javascriptreact', 'json', 'typescript', 'typescriptreact', 'css', 'less', 'scss', 'markdown', 'pandoc' },
   init_options = {
     linters = {
       eslint = {
@@ -179,7 +187,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     underline = true,
     -- This sets the spacing and the prefix, obviously.
     virtual_text = {
-      spacing = 4,
+      spacing = 2,
       prefix = ''
     }
   }

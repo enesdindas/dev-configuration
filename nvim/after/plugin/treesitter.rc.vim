@@ -15,6 +15,8 @@ require'nvim-treesitter.configs'.setup {
     disable = {},
   },
   ensure_installed = {
+    "bash",
+    "lua",
     "ruby",
     "graphql",
     "typescript",
@@ -25,7 +27,8 @@ require'nvim-treesitter.configs'.setup {
     "json",
     "yaml",
     "html",
-    "scss"
+    "scss",
+    "css"
   },
 }
 

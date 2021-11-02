@@ -62,6 +62,9 @@ autocmd InsertLeave * set nopaste
 " Add asterisks in block comments
 set formatoptions+=r
 
+" Backspace config
+set backspace=indent,eol,start
+
 "}}}
 
 " Highlights "{{{
@@ -144,6 +147,7 @@ endif
 " Extras "{{{
 " ---------------------------------------------------------------------
 set exrc
+let g:loaded_perl_provider = 0
 "}}}
 
 " vim: set foldmethod=marker foldlevel=0:

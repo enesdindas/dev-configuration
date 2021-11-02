@@ -16,6 +16,7 @@ local actions = require('telescope.actions')
 
 telescope.setup{
   defaults = {
+    color_devicons = true,
     mappings = {
       n = {
         ["q"] = actions.close
