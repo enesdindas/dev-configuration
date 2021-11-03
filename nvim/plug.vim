@@ -25,8 +25,18 @@ if has("nvim")
   Plug 'nvim-lua/popup.nvim'
   Plug 'nvim-lua/plenary.nvim'
   Plug 'nvim-telescope/telescope.nvim'
-  Plug 'windwp/nvim-autopairs'
   Plug 'morhetz/gruvbox'
+  Plug 'vim-ruby/vim-ruby'
+  Plug 'tpope/vim-rails'
+  Plug 'tpope/vim-endwise'
+  Plug 'tpope/vim-rbenv'
+  Plug 'tpope/vim-bundler'
+  Plug 'prettier/vim-prettier', {
+    \ 'do': 'yarn install',
+    \ 'branch': 'release/0.x'
+    \ }
+  Plug 'folke/tokyonight.nvim'
+
 endif
 
 Plug 'groenewege/vim-less', { 'for': 'less' }

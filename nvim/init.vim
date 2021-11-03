@@ -45,7 +45,9 @@ set ignorecase
 " Be smart when using tabs ;)
 set smarttab
 " indents
-filetype plugin indent on
+filetype on
+filetype plugin on
+filetype indent on
 set shiftwidth=2
 set tabstop=2
 set ai "Auto indent
@@ -139,7 +141,8 @@ if exists("&termguicolors") && exists("&winblend")
   let g:neosolarized_termtrans=1
   runtime ./colors/NeoSolarized.vim
   " colorscheme NeoSolarized
-  colorscheme gruvbox
+  " colorscheme gruvbox
+  colorscheme tokyonight
 endif
 
 "}}}
