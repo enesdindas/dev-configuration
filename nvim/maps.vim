@@ -75,12 +75,6 @@ autocmd FileType go noremap <leader>] :s/^\/\//<cr>
 " Moving Lines
 vnoremap <C-j> :m '>+1<CR>gv=gv
 vnoremap <C-k> :m '<-2<CR>gv=gv
-vnoremap J :m '>+1<CR>gv=gv
-vnoremap K :m '<-2<CR>gv=gv
-inoremap <C-j> <esc>:m .+1<CR>==
-inoremap <C-k> <esc>:m .-2<CR>==
-nnoremap <C-j> :m .+1<CR>==
-nnoremap <C-k> :m .-2<CR>==
 " Stable cursor while searching
 nnoremap n nzzzv
 nnoremap N Nzzzv

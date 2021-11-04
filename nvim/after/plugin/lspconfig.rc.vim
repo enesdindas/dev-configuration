@@ -41,11 +41,6 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
   buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 
-  -- formatting
-  if client.name == 'tsserver' then
-    client.resolved_capabilities.document_formatting = false
-  end
-
   if client.resolved_capabilities.document_formatting then
     vim.api.nvim_command [[augroup Format]]
     vim.api.nvim_command [[autocmd! * <buffer>]]
@@ -103,12 +98,9 @@ nvim_lsp.tsserver.setup {
 }
 
 nvim_lsp.solargraph.setup {
-  cmd = { "solargraph", "stdio" },
-  filetypes = { "ruby" },
-  init_options = { formatting = true },
-  settings = { solargraph = { diagnostics = true } },
   on_attach = on_attach,
   capabilities = capabilities,
+  root_dir = nvim_lsp.util.root_pattern('Gemfile', '.git', 'package.yml'),
   flags = { debounce_text_changes = 100 },
 }
 
