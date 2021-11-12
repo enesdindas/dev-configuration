@@ -36,6 +36,7 @@ if has("nvim")
     \ 'branch': 'release/0.x'
     \ }
   Plug 'folke/tokyonight.nvim'
+  Plug 'fatih/vim-go'
 
 endif
 
