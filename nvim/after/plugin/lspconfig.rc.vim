@@ -112,6 +112,7 @@ nvim_lsp.eslint.setup{}
 
 nvim_lsp.graphql.setup{}
 
+nvim_lsp.pylsp.setup{}
 
 nvim_lsp.diagnosticls.setup {
   on_attach = on_attach,
