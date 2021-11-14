@@ -1,4 +1,5 @@
 if !exists('g:lspconfig')
+require'lspconfig'.pylsp.setup{}
   finish
 endif
 
