@@ -78,7 +78,7 @@ local on_attach = function(client, bufnr)
     '', -- TypeParameter
   }
 
-  print('Attaching LSP: ' .. client.name)
+  print('Attached LSP: ' .. client.name)
 end
 
 
@@ -100,23 +100,38 @@ nvim_lsp.tsserver.setup {
 nvim_lsp.solargraph.setup {
   on_attach = on_attach,
   capabilities = capabilities,
-  root_dir = nvim_lsp.util.root_pattern('Gemfile', '.git', 'package.yml'),
+  root_dir = nvim_lsp.util.root_pattern('Gemfile', '.git'),
   flags = { debounce_text_changes = 100 },
 }
 
-nvim_lsp.gopls.setup{}
+nvim_lsp.gopls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities
+}
 
-nvim_lsp.jsonls.setup{}
+nvim_lsp.jsonls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities
+}
 
-nvim_lsp.eslint.setup{}
+nvim_lsp.eslint.setup {
+  on_attach = on_attach,
+  capabilities = capabilities
+}
 
-nvim_lsp.graphql.setup{}
+nvim_lsp.graphql.setup {
+  on_attach = on_attach,
+  capabilities = capabilities
+}
 
-nvim_lsp.pylsp.setup{}
+nvim_lsp.pylsp.setup {
+  on_attach = on_attach,
+  capabilities = capabilities
+}
 
 nvim_lsp.diagnosticls.setup {
   on_attach = on_attach,
-  filetypes = { 'python', 'ruby', 'javascript', 'javascriptreact', 'json', 'typescript', 'typescriptreact', 'css', 'less', 'scss', 'markdown', 'pandoc' },
+  filetypes = { 'go', 'python', 'ruby', 'javascript', 'javascriptreact', 'json', 'typescript', 'typescriptreact', 'css', 'less', 'scss', 'markdown', 'pandoc' },
   init_options = {
     linters = {
       eslint = {
