@@ -124,7 +124,7 @@ nvim_lsp.graphql.setup {
   capabilities = capabilities
 }
 
-nvim_lsp.pylsp.setup {
+nvim_lsp.pyrigth.setup {
   on_attach = on_attach,
   capabilities = capabilities
 }
