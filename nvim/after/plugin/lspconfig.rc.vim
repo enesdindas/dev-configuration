@@ -129,9 +129,15 @@ nvim_lsp.pylsp.setup {
   capabilities = capabilities
 }
 
+nvim_lsp.ccls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  root_dir = nvim_lsp.util.root_pattern('CMakeLists.txt', "compile_commands.json", ".ccls", "compile_flags.txt", '.git') or dirname
+}
+
 nvim_lsp.diagnosticls.setup {
   on_attach = on_attach,
-  filetypes = { 'go', 'python', 'ruby', 'javascript', 'javascriptreact', 'json', 'typescript', 'typescriptreact', 'css', 'less', 'scss', 'markdown', 'pandoc' },
+  filetypes = { 'c', 'cpp', 'go', 'python', 'ruby', 'javascript', 'javascriptreact', 'json', 'typescript', 'typescriptreact', 'css', 'less', 'scss', 'markdown', 'pandoc' },
   init_options = {
     linters = {
       eslint = {
