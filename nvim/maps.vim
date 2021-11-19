@@ -62,15 +62,15 @@ nnoremap <leader>/ :nohlsearch<CR>
 
 " Comments
 autocmd FileType javascript noremap <leader>[ :s/^/\/\/<cr>
-autocmd FileType javascript noremap <leader>] :s/^\/\//<cr>
+autocmd FileType javascript noremap <leader>] :s/\/\//<cr>
 autocmd FileType typescript noremap <leader>[ :s/^/\/\/<cr>
-autocmd FileType typescript noremap <leader>] :s/^\/\//<cr>
+autocmd FileType typescript noremap <leader>] :s/\/\//<cr>
 autocmd FileType ruby noremap <leader>[ :s/^/#<cr>
-autocmd FileType ruby noremap <leader>] :s/^#/<cr>
+autocmd FileType ruby noremap <leader>] :s/#/<cr>
 autocmd FileType python noremap <leader>[ :s/^/#<cr>
-autocmd FileType python noremap <leader>] :s/^#/<cr>
+autocmd FileType python noremap <leader>] :s/#/<cr>
 autocmd FileType go noremap <leader>[ :s/^/\/\/<cr>
-autocmd FileType go noremap <leader>] :s/^\/\//<cr>
+autocmd FileType go noremap <leader>] :s/\/\//<cr>
 " Moving Lines
 vnoremap <C-j> :m '>+1<CR>gv=gv
 vnoremap <C-k> :m '<-2<CR>gv=gv
