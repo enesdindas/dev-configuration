@@ -100,8 +100,16 @@ nvim_lsp.tsserver.setup {
 nvim_lsp.solargraph.setup {
   on_attach = on_attach,
   capabilities = capabilities,
-  root_dir = nvim_lsp.util.root_pattern('Gemfile', '.git'),
-  flags = { debounce_text_changes = 100 },
+}
+
+--- nvim_lsp.sorbet.setup {
+---   on_attach = on_attach,
+---   capabilities = capabilities
+--- }
+
+nvim_lsp.typeprof.setup {
+  on_attach = on_attach,
+  capabilities = capabilities
 }
 
 nvim_lsp.gopls.setup {
