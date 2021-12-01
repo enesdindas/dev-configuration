@@ -115,7 +115,8 @@ alias rails-install-and-migrate='ggpull && bundle install && yarn install && bin
 alias rails-checkout-schema-changes='gco **/*schema.rb'
 alias rails-setup='rails-install-and-migrate && rails-checkout-schema-changes'
 alias add-solargraph-config='cp ~/.config/solargraph/.solargraph.yml ./' 
-alias dsl-setup='z core && dslcore-link && z dsl-api && dslapi-restart'
+alias dsl-setup='z marketplace-core && dslcore-link && z marketplace-dsl-api && dslapi-restart'
+alias vi='nvim'
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
