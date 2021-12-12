@@ -98,7 +98,7 @@ nvim_lsp.solargraph.setup {
   init_options = {
     formatting = true,
   },
-  root_dir = nvim_lsp.util.root_pattern('Gemfile', '.git'),
+  root_dir = nvim_lsp.util.root_pattern('Gemfile', '.git', 'package.yml', 'package.yaml'),
   settings = {
     solargraph = {
       diagnostics = true,
