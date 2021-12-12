@@ -67,6 +67,8 @@ set formatoptions+=r
 " Backspace config
 set backspace=indent,eol,start
 
+let g:dashboard_default_executive ='telescope.nvim'
+
 "}}}
 
 " Highlights "{{{

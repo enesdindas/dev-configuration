@@ -10,9 +10,9 @@ Plug 'hoob3rt/lualine.nvim'
 Plug 'kristijanhusak/defx-git'
 Plug 'kristijanhusak/defx-icons'
 Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'neovim/nvim-lspconfig'
 Plug 'folke/lsp-colors.nvim'
 Plug 'L3MON4D3/LuaSnip'
+Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
@@ -37,11 +37,11 @@ Plug 'folke/tokyonight.nvim'
 Plug 'fatih/vim-go'
 Plug 'EdenEast/nightfox.nvim'
 Plug 'lewis6991/gitsigns.nvim'
-Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'ojroques/nvim-lspfuzzy'
-Plug 'folke/trouble.nvim'
+Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'glepnir/dashboard-nvim'
 
 call plug#end()
 

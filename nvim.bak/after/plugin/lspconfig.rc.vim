@@ -114,6 +114,7 @@ nvim_lsp.tsserver.setup {
 nvim_lsp.solargraph.setup {
   on_attach = on_attach,
   capabilities = capabilities,
+  cmd = {"solargraph" ,"stdio"},
   init_options = {
     formatting = true,
   },
