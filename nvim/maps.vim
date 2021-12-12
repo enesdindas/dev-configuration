@@ -71,6 +71,12 @@ autocmd FileType python noremap <leader>[ :s/^/#<cr>
 autocmd FileType python noremap <leader>] :s/#/<cr>
 autocmd FileType go noremap <leader>[ :s/^/\/\/<cr>
 autocmd FileType go noremap <leader>] :s/\/\//<cr>
+autocmd FileType lua noremap <leader>[ :s/^/--<cr>
+autocmd FileType lua noremap <leader>] :s/--/<cr>
+autocmd FileType vim noremap <leader>[ :s/^/"<cr>
+autocmd FileType vim noremap <leader>] :s/"/<cr>
+
+
 " Moving Lines
 vnoremap <C-j> :m '>+1<CR>gv=gv
 vnoremap <C-k> :m '<-2<CR>gv=gv
