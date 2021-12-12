@@ -87,11 +87,6 @@ local capabilities = require('cmp_nvim_lsp').update_capabilities(
   vim.lsp.protocol.make_client_capabilities()
 )
 
-nvim_lsp.flow.setup {
-  on_attach = on_attach,
-  capabilities = capabilities
-}
-
 nvim_lsp.tsserver.setup {
   on_attach = on_attach,
   capabilities = capabilities
@@ -100,16 +95,15 @@ nvim_lsp.tsserver.setup {
 nvim_lsp.solargraph.setup {
   on_attach = on_attach,
   capabilities = capabilities,
-}
-
---- nvim_lsp.sorbet.setup {
----   on_attach = on_attach,
----   capabilities = capabilities
---- }
-
-nvim_lsp.typeprof.setup {
-  on_attach = on_attach,
-  capabilities = capabilities
+  init_options = {
+    formatting = true,
+  },
+  root_dir = nvim_lsp.util.root_pattern('Gemfile', '.git'),
+  settings = {
+    solargraph = {
+      diagnostics = true,
+    }
+  }
 }
 
 nvim_lsp.gopls.setup {
@@ -137,15 +131,14 @@ nvim_lsp.pyright.setup {
   capabilities = capabilities
 }
 
-nvim_lsp.ccls.setup {
+nvim_lsp.clangd.setup {
   on_attach = on_attach,
   capabilities = capabilities,
-  root_dir = nvim_lsp.util.root_pattern('CMakeLists.txt', "compile_commands.json", ".ccls", "compile_flags.txt", '.git') or dirname
 }
 
 nvim_lsp.diagnosticls.setup {
   on_attach = on_attach,
-  filetypes = { 'c', 'cpp', 'go', 'python', 'ruby', 'javascript', 'javascriptreact', 'json', 'typescript', 'typescriptreact', 'css', 'less', 'scss', 'markdown', 'pandoc' },
+  filetypes = { 'javascript', 'javascriptreact', 'json', 'typescript', 'typescriptreact', 'css', 'less', 'scss', 'markdown', 'pandoc' },
   init_options = {
     linters = {
       eslint = {

@@ -6,7 +6,6 @@ call plug#begin()
 
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
-Plug 'groenewege/vim-less', { 'for': 'less' }
 Plug 'hoob3rt/lualine.nvim'
 Plug 'kristijanhusak/defx-git'
 Plug 'kristijanhusak/defx-icons'
@@ -26,7 +25,6 @@ Plug 'onsails/lspkind-nvim'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
-Plug 'morhetz/gruvbox'
 Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-endwise'
@@ -41,6 +39,10 @@ Plug 'fatih/vim-go'
 Plug 'EdenEast/nightfox.nvim'
 Plug 'lewis6991/gitsigns.nvim'
 Plug 'lukas-reineke/indent-blankline.nvim'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'ojroques/nvim-lspfuzzy'
+Plug 'folke/trouble.nvim'
 
 call plug#end()
 
