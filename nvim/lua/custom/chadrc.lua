@@ -3,6 +3,12 @@
 
 local M = {}
 
+M.options = {
+   mouse = "",
+   tabstop = 2,
+}
+
+
 M.plugins = {
     options = {
       lspconfig = {

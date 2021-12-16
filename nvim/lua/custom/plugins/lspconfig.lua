@@ -5,7 +5,7 @@ M.setup_lsp = function(attach, capabilities)
 
    -- lspservers with default config
 
-   local servers = { "tsserver", "eslint", "gopls", "graphql", "pyright", "clangd", "jsonls" }
+   local servers = { "tsserver", "eslint", "gopls", "graphql", "pyright", "clangd", "jsonls", "sumneko_lua" }
 
    for _, lsp in ipairs(servers) do
       lspconfig[lsp].setup {
@@ -16,10 +16,13 @@ M.setup_lsp = function(attach, capabilities)
          },
       }
    end
-   
+
   lspconfig.solargraph.setup {
     on_attach = attach,
     capabilities = capabilities,
+    flags = {
+      debounce_text_changes = 100,
+    },
     cmd = {"solargraph", "stdio"},
     init_options = {
       formatting = true,
@@ -33,9 +36,13 @@ M.setup_lsp = function(attach, capabilities)
   }
 
   lspconfig.diagnosticls.setup {
-  on_attach = attach,
-  filetypes = { 'javascript', 'javascriptreact', 'json', 'typescript', 'typescriptreact', 'css', 'less', 'scss', 'markdown', 'pandoc' },
-  init_options = {
+    on_attach = attach,
+    capabilities = capabilities,
+    flags = {
+      debounce_text_changes = 100,
+    },
+    filetypes = { 'javascript', 'javascriptreact', 'json', 'typescript', 'typescriptreact', 'css', 'less', 'scss', 'markdown', 'pandoc' },
+    init_options = {
     linters = {
       eslint = {
         command = 'eslint_d',
@@ -69,12 +76,10 @@ M.setup_lsp = function(attach, capabilities)
         command = 'eslint_d',
         rootPatterns = { '.git' },
         args = { '--stdin', '--stdin-filename', '%filename', '--fix-to-stdout' },
-        rootPatterns = { '.git' },
       },
       prettier = {
         command = 'prettier_d_slim',
         rootPatterns = { '.git' },
-        -- requiredFiles: { 'prettier.config.js' },
         args = { '--stdin', '--stdin-filepath', '%filename' }
       }
     },
@@ -87,13 +92,10 @@ M.setup_lsp = function(attach, capabilities)
       less = 'prettier',
       typescript = 'prettier',
       typescriptreact = 'prettier',
-      json = 'prettier',
       markdown = 'prettier',
     }
   }
 }
--- the above tsserver config will remvoe the tsserver's inbuilt formatting 
--- since I use null-ls with denofmt for formatting ts/js stuff.
 end
 
 return M
