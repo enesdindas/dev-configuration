@@ -47,6 +47,14 @@ hooks.add("install_plugins", function(use)
         "tpope/vim-rbenv"
       }
 
+      use {
+        "jose-elias-alvarez/null-ls.nvim",
+        after = "nvim-lspconfig",
+        config = function()
+         require("custom.plugins.null-ls").setup()
+        end,
+      }
+
  end)
 
 -- the above snippet is just an example
