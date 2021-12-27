@@ -17,7 +17,7 @@ local sources = {
     }, b.diagnostics.rubocop.with {
         command = "bundle",
         args = {"exec", "rubocop", "-f", "json", "--stdin", "$FILENAME"}
-    }
+    }, b.code_actions.gitsigns.with({disabled_filetypes = {"lua"}})
 }
 
 local M = {}

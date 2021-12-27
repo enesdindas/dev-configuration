@@ -124,8 +124,8 @@ end
 
 M.comment = function()
    local m = plugin_maps.comment.toggle
-   map("n", m, ":lua require('Comment.api').toggle()<CR>")
-   map("v", m, ":lua require('Comment.api').gc(vim.fn.visualmode())<CR>")
+   map("n", m, ":lua require('Comment.api').toggle_current_linewise()<CR>")
+   map("v", m, ":lua require('Comment.api').toggle_linewise_op(vim.fn.visualmode())<CR>")
 end
 
 M.dashboard = function()
@@ -136,6 +136,29 @@ M.dashboard = function()
    map("n", m.open, ":Dashboard <CR>")
    map("n", m.session_load, ":SessionLoad <CR>")
    map("n", m.session_save, ":SessionSave <CR>")
+end
+
+M.lspconfig = function()
+   local m = plugin_maps.lspconfig
+
+   -- See `:help vim.lsp.*` for documentation on any of the below functions
+   map("n", m.declaration, "<cmd>lua vim.lsp.buf.declaration()<CR>")
+   map("n", m.definition, "<cmd>lua vim.lsp.buf.definition()<CR>")
+   map("n", m.hover, "<cmd>lua vim.lsp.buf.hover()<CR>")
+   map("n", m.implementation, "<cmd>lua vim.lsp.buf.implementation()<CR>")
+   map("n", m.signature_help, "<cmd>lua vim.lsp.buf.signature_help()<CR>")
+   map("n", m.add_workspace_folder, "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>")
+   map("n", m.remove_workspace_folder, "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>")
+   map("n", m.list_workspace_folders, "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>")
+   map("n", m.type_definition, "<cmd>lua vim.lsp.buf.type_definition()<CR>")
+   map("n", m.rename, "<cmd>lua vim.lsp.buf.rename()<CR>")
+   map("n", m.code_action, "<cmd>lua vim.lsp.buf.code_action()<CR>")
+   map("n", m.references, "<cmd>lua vim.lsp.buf.references()<CR>")
+   map("n", m.float_diagnostics, "<cmd>lua vim.diagnostic.open_float()<CR>")
+   map("n", m.goto_prev, "<cmd>lua vim.diagnostic.goto_prev()<CR>")
+   map("n", m.goto_next, "<cmd>lua vim.diagnostic.goto_next()<CR>")
+   map("n", m.set_loclist, "<cmd>lua vim.diagnostic.setloclist()<CR>")
+   map("n", m.formatting, "<cmd>lua vim.lsp.buf.formatting()<CR>")
 end
 
 M.nvimtree = function()

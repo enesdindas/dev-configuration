@@ -62,7 +62,7 @@ M.plugins = {
       colorizer = false, -- color RGB, HEX, CSS, NAME color codes
       comment = true, -- easily (un)comment code, language aware
       dashboard = false,
-      esc_insertmode = true, -- map to <ESC> with no lag
+      better_escape = true, -- map to <ESC> with no lag
       feline = true, -- statusline
       gitsigns = true,
       lspsignature = true, -- lsp enhancements
@@ -79,11 +79,14 @@ M.plugins = {
       },
       nvimtree = {
          enable_git = 0,
+         -- packerCompile required after changing lazy_load
+         lazy_load = true,
 
          ui = {
             allow_resize = true,
             side = "left",
             width = 25,
+            hide_root_folder = true,
          },
       },
       luasnip = {
@@ -187,6 +190,26 @@ M.mappings.plugins = {
    -- map to <ESC> with no lag
    better_escape = { -- <ESC> will still work
       esc_insertmode = { "jk" }, -- multiple mappings allowed
+   },
+
+   lspconfig = {
+      declaration = "gD",
+      definition = "gd",
+      hover = "K",
+      implementation = "gi",
+      signature_help = "gk",
+      add_workspace_folder = "<leader>wa",
+      remove_workspace_folder = "<leader>wr",
+      list_workspace_folders = "<leader>wl",
+      type_definition = "<leader>D",
+      rename = "<leader>rn",
+      code_action = "<leader>ca",
+      references = "gr",
+      float_diagnostics = "ge",
+      goto_prev = "[d",
+      goto_next = "]d",
+      set_loclist = "<leader>q",
+      formatting = "<leader>fm",
    },
 
    nvimtree = {
