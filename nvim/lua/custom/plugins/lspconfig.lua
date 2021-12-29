@@ -25,7 +25,7 @@ M.setup_lsp = function(attach, capabilities)
         cmd = {"solargraph", "stdio"},
         init_options = {formatting = true},
         root_dir = lspconfig.util.root_pattern('Gemfile', '.git'),
-        settings = {solargraph = {diagnostics = true}}
+        settings = {solargraph = {diagnostics = false}}
     }
 
     lspconfig.diagnosticls.setup {
