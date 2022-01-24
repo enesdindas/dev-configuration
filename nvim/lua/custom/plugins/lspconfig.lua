@@ -6,8 +6,8 @@ M.setup_lsp = function(attach, capabilities)
     -- lspservers with default config
 
     local servers = {
-        "tsserver", "eslint", "gopls", "graphql", "pyright", "clangd", "jsonls",
-        "sumneko_lua"
+        "tsserver", "eslint", "gopls", "graphql", "pyright", "clangd", "jsonls", "sumneko_lua",
+        "sorbet"
     }
 
     for _, lsp in ipairs(servers) do
@@ -23,9 +23,9 @@ M.setup_lsp = function(attach, capabilities)
         capabilities = capabilities,
         flags = {debounce_text_changes = 100},
         cmd = {"solargraph", "stdio"},
-        init_options = {formatting = true},
-        root_dir = lspconfig.util.root_pattern('Gemfile', '.git'),
-        settings = {solargraph = {diagnostics = false}}
+        init_options = {formatting = false},
+        settings = {solargraph = {diagnostics = false}},
+        root_dir = lspconfig.util.root_pattern('Gemfile', '.git')
     }
 
     lspconfig.diagnosticls.setup {
@@ -33,8 +33,8 @@ M.setup_lsp = function(attach, capabilities)
         capabilities = capabilities,
         flags = {debounce_text_changes = 100},
         filetypes = {
-            'javascript', 'javascriptreact', 'json', 'typescript',
-            'typescriptreact', 'css', 'less', 'scss', 'markdown', 'pandoc'
+            'javascript', 'javascriptreact', 'json', 'typescript', 'typescriptreact', 'css', 'less',
+            'scss', 'markdown', 'pandoc'
         },
         init_options = {
             linters = {
@@ -42,10 +42,7 @@ M.setup_lsp = function(attach, capabilities)
                     command = 'eslint_d',
                     rootPatterns = {'.git'},
                     debounce = 100,
-                    args = {
-                        '--stdin', '--stdin-filename', '%filepath', '--format',
-                        'json'
-                    },
+                    args = {'--stdin', '--stdin-filename', '%filepath', '--format', 'json'},
                     sourceName = 'eslint_d',
                     parseJson = {
                         errorsRoot = '[0].messages',
@@ -69,10 +66,7 @@ M.setup_lsp = function(attach, capabilities)
                 eslint_d = {
                     command = 'eslint_d',
                     rootPatterns = {'.git'},
-                    args = {
-                        '--stdin', '--stdin-filename', '%filename',
-                        '--fix-to-stdout'
-                    }
+                    args = {'--stdin', '--stdin-filename', '%filename', '--fix-to-stdout'}
                 },
                 prettier = {
                     command = 'prettier_d',

@@ -24,18 +24,6 @@ M.options = {
    updatetime = 250,
    undofile = true,
    fillchars = { eob = " " },
-
-   -- NvChad options
-   nvChad = {
-      copy_cut = true, -- copy cut text ( x key ), visual and normal mode
-      copy_del = true, -- copy deleted text ( dd key ), visual and normal mode
-      insert_nav = true, -- navigation in insertmode
-      window_nav = true,
-
-      -- updater
-      update_url = "https://github.com/NvChad/NvChad",
-      update_branch = "main",
-   },
 }
 
 ---- UI -----
