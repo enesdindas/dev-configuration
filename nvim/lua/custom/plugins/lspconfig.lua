@@ -6,8 +6,7 @@ M.setup_lsp = function(attach, capabilities)
     -- lspservers with default config
 
     local servers = {
-        "tsserver", "eslint", "gopls", "graphql", "pyright", "clangd", "jsonls", "sumneko_lua",
-        "sorbet"
+        "tsserver", "eslint", "gopls", "graphql", "pyright", "clangd", "jsonls", "sumneko_lua"
     }
 
     for _, lsp in ipairs(servers) do
@@ -27,6 +26,8 @@ M.setup_lsp = function(attach, capabilities)
         settings = {solargraph = {diagnostics = false}},
         root_dir = lspconfig.util.root_pattern('Gemfile', '.git')
     }
+
+    lspconfig.sorbet.setup {on_attach = attach, capabilities = capabilities, autostart = false}
 
     lspconfig.diagnosticls.setup {
         on_attach = attach,
