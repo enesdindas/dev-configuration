@@ -25,7 +25,7 @@ local sources = {
 local M = {}
 
 M.setup = function()
-    null_ls.setup {debug = true, sources = sources, default_timeout = 50000}
+    null_ls.setup {debug = true, sources = sources, default_timeout = 50000, update_in_insert = true, debounce = 100}
 end
 
 return M

@@ -122,7 +122,7 @@ M.lsp_handlers = function()
       },
       signs = true,
       underline = true,
-      update_in_insert = false,
+      update_in_insert = true,
    }
 
    vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
