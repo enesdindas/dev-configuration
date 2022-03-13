@@ -8,10 +8,6 @@ return packer.startup(function()
     local plugin_settings = require("core.utils").load_config().plugins
     local override_req = require("core.utils").override_req
 
-    -- this is arranged on the basis of when a plugin starts
-
-    -- this is the nvchad core repo containing utilities for some features like theme swticher, no need to lazy load
-    use "Nvchad/extensions"
     use "nvim-lua/plenary.nvim"
 
     use {"wbthomason/packer.nvim", event = "VimEnter"}
@@ -193,15 +189,6 @@ return packer.startup(function()
         "nvim-telescope/telescope.nvim",
         module = "telescope",
         cmd = "Telescope",
-        requires = {
-            {"nvim-telescope/telescope-fzf-native.nvim", run = "make"}, {
-                "nvim-telescope/telescope-media-files.nvim",
-                disable = not plugin_settings.status.telescope_media,
-                setup = function()
-                    require("core.mappings").telescope_media()
-                end
-            }
-        },
         config = override_req("telescope", "plugins.configs.telescope"),
         setup = function()
             require("core.mappings").telescope()
@@ -216,32 +203,6 @@ return packer.startup(function()
         end
     }
 
-    use {"junegunn/fzf"}
-
-    use {"junegunn/fzf.vim"}
-
-    use {
-        "ojroques/nvim-lspfuzzy",
-        config = function()
-            require('lspfuzzy').setup {
-                methods = 'all', -- either 'all' or a list of LSP methods (see below)
-                jump_one = true, -- jump immediately if there is only one location
-                callback = nil, -- callback called after jumping to a location
-                save_last = false, -- save last location results for the :LspFuzzyLast command
-                fzf_preview = { -- arguments to the FZF '--preview-window' option
-                    'right:+{2}-/2' -- preview on the right and centered on entry
-                },
-                fzf_action = { -- FZF actions
-                    ['ctrl-t'] = 'tab split', -- go to location in a new tab
-                    ['ctrl-v'] = 'vsplit', -- go to location in a vertical split
-                    ['ctrl-x'] = 'split' -- go to location in a horizontal split
-                },
-                fzf_modifier = ':~:.', -- format FZF entries, see |filename-modifiers|
-                fzf_trim = true -- trim FZF entries
-            }
-        end
-    }
-
     use {"vim-ruby/vim-ruby"}
 
     use {"tpope/vim-rails"}
@@ -250,4 +211,17 @@ return packer.startup(function()
 
     use {"tpope/vim-rbenv"}
 
+    use {"junegunn/fzf"}
+
+    use {"junegunn/fzf.vim"}
+
+    use {
+        "ojroques/nvim-lspfuzzy",
+        config = function()
+            require('lspfuzzy').setup {
+                methods = 'all',
+                jump_one = false -- jump immediately if there is only one location
+            }
+        end
+    }
 end)
