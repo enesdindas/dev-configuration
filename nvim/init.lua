@@ -10,3 +10,4 @@ end
 
 -- non plugin mappings
 require("core.mappings").misc()
+vim.g.copilot_assume_mapped = true

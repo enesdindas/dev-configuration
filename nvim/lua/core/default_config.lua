@@ -71,11 +71,11 @@ M.plugins = {
             setup_lspconf = "" -- path of file containing setups of different lsps
         },
         nvimtree = {
-            enable_git = 0,
+            enable_git = 1,
             -- packerCompile required after changing lazy_load
             lazy_load = true,
 
-            ui = {allow_resize = true, side = "left", width = 50, hide_root_folder = true}
+            ui = {allow_resize = true, side = "left", width = 100, hide_root_folder = true}
         },
         luasnip = {snippet_path = {}},
         statusline = {
@@ -187,6 +187,7 @@ M.mappings.plugins = {
         buffers = "<leader>fb",
         find_files = "<leader>ff",
         find_hiddenfiles = "<leader>fa",
+        find_git_files = "<leader>fg",
         git_commits = "<leader>cm",
         git_status = "<leader>gt",
         help_tags = "<leader>fh",
