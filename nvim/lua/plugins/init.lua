@@ -144,6 +144,8 @@ return packer.startup(function()
     use {"hrsh7th/cmp-buffer", disable = not plugin_settings.status.cmp, after = "cmp-nvim-lsp"}
 
     use {"hrsh7th/cmp-path", disable = not plugin_settings.status.cmp, after = "cmp-buffer"}
+
+    use "lukas-reineke/cmp-rg"
     -- misc plugins
     use {
         "windwp/nvim-autopairs",
