@@ -47,10 +47,10 @@ local setup_lsp = function(attach)
         cmd = {"solargraph", "stdio"},
         init_options = {formatting = false},
         settings = {solargraph = {diagnostics = false}},
-        root_dir = lspconfig.util.root_pattern('Gemfile', '.git')
+        root_dir = lspconfig.util.root_pattern('Gemfile', '.git', 'package.yml')
     }
 
-    lspconfig.sorbet.setup {on_attach = attach, capabilities = capabilities, autostart = false}
+    lspconfig.sorbet.setup {on_attach = attach, capabilities = capabilities}
 
     lspconfig.rls.setup {
         on_attach = attach,
