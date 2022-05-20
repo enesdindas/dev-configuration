@@ -1,12 +1,14 @@
+local present, lspconfig = pcall(require, "lspconfig")
+
+if not present then return end
+
+local M = {}
+
 require("plugins.configs.others").lsp_handlers()
 
-local function on_attach(_, bufnr)
-    local function buf_set_option(...)
-        vim.api.nvim_buf_set_option(bufnr, ...)
-    end
-
-    -- Enable completion triggered by <c-x><c-o>
-    buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
+function M.on_attach(client, _)
+    client.resolved_capabilities.document_formatting = false
+    client.resolved_capabilities.document_range_formatting = false
 
     require("core.mappings").lspconfig()
 end
@@ -24,100 +26,51 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
     properties = {"documentation", "detail", "additionalTextEdits"}
 }
 
-local setup_lsp = function(attach)
-    local lspconfig = require "lspconfig"
-    -- lspservers with default config
+local servers = {"tsserver", "eslint", "gopls", "graphql", "pyright", "clangd", "jsonls"}
 
-    local servers = {
-        "tsserver", "eslint", "gopls", "graphql", "pyright", "clangd", "jsonls", "sumneko_lua"
-    }
-
-    for _, lsp in ipairs(servers) do
-        lspconfig[lsp].setup {
-            on_attach = attach,
-            capabilities = capabilities,
-            flags = {debounce_text_changes = 100}
-        }
-    end
-
-    lspconfig.solargraph.setup {
-        on_attach = attach,
+for _, lsp in ipairs(servers) do
+    lspconfig[lsp].setup {
+        on_attach = M.on_attach,
         capabilities = capabilities,
-        flags = {debounce_text_changes = 100},
-        cmd = {"solargraph", "stdio"},
-        init_options = {formatting = false},
-        settings = {solargraph = {diagnostics = false}},
-        root_dir = lspconfig.util.root_pattern('Gemfile', '.git', 'package.yml')
-    }
-
-    lspconfig.sorbet.setup {on_attach = attach, capabilities = capabilities}
-
-    lspconfig.rls.setup {
-        on_attach = attach,
-        capabilities = capabilities,
-        flags = {debounce_text_changes = 100},
-        settings = {rust = {unstable_features = true, build_on_save = false, all_features = true}}
-    }
-
-    lspconfig.diagnosticls.setup {
-        on_attach = attach,
-        capabilities = capabilities,
-        flags = {debounce_text_changes = 100},
-        filetypes = {
-            'javascript', 'javascriptreact', 'json', 'typescript', 'typescriptreact', 'css', 'less',
-            'scss', 'markdown', 'pandoc'
-        },
-        init_options = {
-            linters = {
-                eslint = {
-                    command = 'eslint_d',
-                    rootPatterns = {'.git'},
-                    debounce = 100,
-                    args = {'--stdin', '--stdin-filename', '%filepath', '--format', 'json'},
-                    sourceName = 'eslint_d',
-                    parseJson = {
-                        errorsRoot = '[0].messages',
-                        line = 'line',
-                        column = 'column',
-                        endLine = 'endLine',
-                        endColumn = 'endColumn',
-                        message = '[eslint] ${message} [${ruleId}]',
-                        security = 'severity'
-                    },
-                    securities = {[2] = 'error', [1] = 'warning'}
-                }
-            },
-            filetypes = {
-                javascript = 'eslint',
-                javascriptreact = 'eslint',
-                typescript = 'eslint',
-                typescriptreact = 'eslint'
-            },
-            formatters = {
-                eslint_d = {
-                    command = 'eslint_d',
-                    rootPatterns = {'.git'},
-                    args = {'--stdin', '--stdin-filename', '%filename', '--fix-to-stdout'}
-                },
-                prettier = {
-                    command = 'prettier_d',
-                    rootPatterns = {'.git'},
-                    args = {'--stdin', '--stdin-filepath', '%filename'}
-                }
-            },
-            formatFiletypes = {
-                css = 'prettier',
-                javascript = 'prettier',
-                javascriptreact = 'prettier',
-                json = 'prettier',
-                scss = 'prettier',
-                less = 'prettier',
-                typescript = 'prettier',
-                typescriptreact = 'prettier',
-                markdown = 'prettier'
-            }
-        }
+        flags = {debounce_text_changes = 100}
     }
 end
 
-setup_lsp(on_attach)
+lspconfig.sumneko_lua.setup {
+    on_attach = M.on_attach,
+    capabilities = capabilities,
+
+    settings = {
+        Lua = {
+            diagnostics = {globals = {"vim"}},
+            workspace = {
+                library = {
+                    [vim.fn.expand "$VIMRUNTIME/lua"] = true,
+                    [vim.fn.expand "$VIMRUNTIME/lua/vim/lsp"] = true
+                },
+                maxPreload = 100000,
+                preloadFileSize = 10000
+            }
+        }
+    }
+}
+
+lspconfig.solargraph.setup {
+    on_attach = M.on_attach,
+    capabilities = capabilities,
+
+    flags = {debounce_text_changes = 100},
+    cmd = {"solargraph", "stdio"},
+    init_options = {formatting = false},
+    settings = {solargraph = {diagnostics = false}},
+    root_dir = lspconfig.util.root_pattern('Gemfile', '.git', 'package.yml')
+}
+
+lspconfig.sorbet.setup {on_attach = M.on_attach, capabilities = capabilities}
+
+-- requires a file containing user's lspconfigs
+local addlsp_confs = require("core.utils").load_config().plugins.options.lspconfig.setup_lspconf
+
+if #addlsp_confs ~= 0 then require(addlsp_confs).setup_lsp(M.on_attach, capabilities) end
+
+return M
