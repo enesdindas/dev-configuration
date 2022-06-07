@@ -44,8 +44,8 @@ g.nvim_tree_icons = {
 
 local options = {
    filters = {
-      dotfiles = false,
-      exclude = { "custom" },
+      dotfiles = true,
+      -- exclude = { "custom" },
    },
    disable_netrw = true,
    hijack_netrw = true,
@@ -59,12 +59,12 @@ local options = {
       update_cwd = false,
    },
    view = {
-      side = "left",
-      width = 100,
+      side = "right",
+      width = 50,
       hide_root_folder = true,
    },
    git = {
-      enable = false,
+      enable = true,
       ignore = true,
    },
    actions = {

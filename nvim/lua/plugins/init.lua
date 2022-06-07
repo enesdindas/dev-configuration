@@ -17,9 +17,6 @@ local plugins = {
 
     ["feline-nvim/feline.nvim"] = {
         after = "nvim-web-devicons",
-        -- setup = function()
-        --     require "plugins.configs.feline"
-        -- end
         config = function()
             require "plugins.configs.statusline"
         end
@@ -69,6 +66,8 @@ local plugins = {
             require("core.utils").packer_lazy_load "gitsigns.nvim"
         end
     },
+
+    ["tpope/vim-fugitive"] = {},
 
     -- lsp stuff
 
