@@ -56,6 +56,8 @@ map("n", "<C-s>", "<cmd> :w <CR>") -- ctrl + s to save file
 map("t", { "jk" }, "<C-\\><C-n>")
 
 -- Add Packer commands because we are not loading it at startup
+-- Trouble 
+map("n", "<leader>t", "<cmd> :TroubleToggle <CR>")
 
 local packer_cmd = function(callback)
    return function()
@@ -196,6 +198,13 @@ M.telescope = function()
    map("n", "<leader>fo", "<cmd> :Telescope oldfiles <CR>")
    map("n", "<leader>th", "<cmd> :Telescope themes <CR>")
    map("n", "<leader>tk", "<cmd> :Telescope keymaps <CR>")
+
+   -- lsp
+   map("n", "<leader>tgr", "<cmd> :lua require'telescope.builtin'.lsp_references{} <CR>")
+   map("n", "<leader>tgd", "<cmd> :lua require'telescope.builtin'.lsp_definitions{} <CR>")
+   map("n", "<leader>tgi", "<cmd> :lua require'telescope.builtin'.lsp_implementations{} <CR>")
+   map("n", "<leader>tD", "<cmd> :lua require'telescope.builtin'.lsp_type_definitions{} <CR>")
+   map("n", "<leader>tf", "<cmd> :lua require'telescope.builtin'.diagnostics{} <CR>")
 
    -- pick a hidden term
    map("n", "<leader>W", "<cmd> :Telescope terms <CR>")

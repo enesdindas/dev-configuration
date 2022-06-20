@@ -36,6 +36,7 @@ for _, lsp in ipairs(servers) do
     }
 end
 
+-- Lua
 lspconfig.sumneko_lua.setup {
     on_attach = M.on_attach,
     capabilities = capabilities,
@@ -55,6 +56,7 @@ lspconfig.sumneko_lua.setup {
     }
 }
 
+-- Ruby
 lspconfig.solargraph.setup {
     on_attach = M.on_attach,
     capabilities = capabilities,
@@ -65,8 +67,20 @@ lspconfig.solargraph.setup {
     settings = {solargraph = {diagnostics = false}},
     root_dir = lspconfig.util.root_pattern('Gemfile', '.git', 'package.yml')
 }
-
 lspconfig.sorbet.setup {on_attach = M.on_attach, capabilities = capabilities}
+
+-- Rust
+lspconfig.rust_analyzer.setup({
+    capabilities = capabilities,
+    on_attach = M.on_attach,
+    settings = {
+        ["rust-analyzer"] = {
+            assist = {importGranularity = "module", importPrefix = "by_self"},
+            cargo = {loadOutDirsFromCheck = true},
+            procMacro = {enable = true}
+        }
+    }
+})
 
 -- requires a file containing user's lspconfigs
 local addlsp_confs = require("core.utils").load_config().plugins.options.lspconfig.setup_lspconf

@@ -197,27 +197,6 @@ local plugins = {
 
     ["junegunn/fzf.vim"] = {},
 
-    ["ojroques/nvim-lspfuzzy"] = {
-        config = function()
-            require('lspfuzzy').setup {
-                methods = 'all', -- either 'all' or a list of LSP methods (see below)
-                jump_one = true, -- jump immediately if there is only one location
-                callback = nil, -- callback called after jumping to a location
-                save_last = false, -- save last location results for the :LspFuzzyLast command
-                fzf_preview = { -- arguments to the FZF '--preview-window' option
-                    'right:+{2}-/2' -- preview on the right and centered on entry
-                },
-                fzf_action = { -- FZF actions
-                    ['ctrl-t'] = 'tab split', -- go to location in a new tab
-                    ['ctrl-v'] = 'vsplit', -- go to location in a vertical split
-                    ['ctrl-x'] = 'split' -- go to location in a horizontal split
-                },
-                fzf_modifier = ':~:.', -- format FZF entries, see |filename-modifiers|
-                fzf_trim = true -- trim FZF entries
-            }
-        end
-    },
-
     ["vim-ruby/vim-ruby"] = {},
 
     ["tpope/vim-rails"] = {},
@@ -235,7 +214,19 @@ local plugins = {
         end
     },
 
-    ["folke/tokyonight.nvim"] = {}
+    ["folke/tokyonight.nvim"] = {},
+
+    ["folke/trouble.nvim"] = {
+        requires = "kyazdani42/nvim-web-devicons",
+        config = function()
+            require("trouble").setup {
+                -- your configuration comes here
+                -- or leave it empty to use the default settings
+                -- refer to the configuration section below
+            }
+        end
+    }
+
 }
 
 plugins = require("core.utils").remove_default_plugins(plugins)
