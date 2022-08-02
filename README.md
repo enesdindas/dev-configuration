@@ -23,7 +23,7 @@ https://github.com/wbthomason/packer.nvim#quickstart
 6. Change current nvim folder with project's nvim folder
 
 ```bash
-  cp -r dotfiles-master/nvim ~/.config
+  cp -r dev-configuration/nvim ~/.config
 ```
 
 7 . Run `nvim` command and install plugins
