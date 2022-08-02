@@ -29,5 +29,12 @@ https://github.com/wbthomason/packer.nvim#quickstart
 7 . Run `nvim` command and install plugins
 
 ```bash
-  :PackerInstall
+  nvim PackerInstall
+  nvim PackerSync
+```
+
+8 . Run checkhealt
+
+```bash
+  nvim +checkhealt
 ```
