@@ -18,7 +18,6 @@ https://github.com/wbthomason/packer.nvim#quickstart
 
 ```bash
   git clone git@github.com:enesdindas/dev-configuration.git
-  cd dev-configuration
 ```
 
 6. Change current nvim folder with project's nvim folder
