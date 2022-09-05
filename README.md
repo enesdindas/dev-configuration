@@ -17,18 +17,24 @@ https://github.com/wbthomason/packer.nvim#quickstart
 5. Clone the project
 
 ```bash
-  git clone git@github.com:enesdindas/dev-configuration.git
-  cd dev-configuration
+git clone git@github.com:enesdindas/dev-configuration.git
 ```
 
 6. Change current nvim folder with project's nvim folder
 
 ```bash
-  cp -r dotfiles-master/nvim ~/.config
+cp -r dev-configuration/nvim ~/.config
 ```
 
 7 . Run `nvim` command and install plugins
 
 ```bash
-  :PackerInstall
+nvim +PackerInstall
+nvim +PackerSync
+```
+
+8 . Run checkhealt
+
+```bash
+nvim +checkhealt
 ```
