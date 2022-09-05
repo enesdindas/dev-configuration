@@ -215,6 +215,7 @@ local plugins = {
     },
 
     ["folke/tokyonight.nvim"] = {},
+    ["dracula/vim"] = {},
 
     ["folke/trouble.nvim"] = {
         requires = "kyazdani42/nvim-web-devicons",

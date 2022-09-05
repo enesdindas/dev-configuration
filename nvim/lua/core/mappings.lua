@@ -106,8 +106,8 @@ M.bufferline = function()
 end
 
 M.comment = function()
-   map("n", "<leader>/", "<cmd> :lua require('Comment.api').toggle_current_linewise()<CR>")
-   map("v", "<leader>/", "<esc><cmd> :lua require('Comment.api').toggle_linewise_op(vim.fn.visualmode())<CR>")
+   map("n", "<leader>/", "<cmd> :lua require('Comment.api').locked('toggle.linewise.current')()<CR>")
+   map("v", "<leader>/", "<esc><cmd> :lua require('Comment.api').locked('comment.linewise')(vim.fn.visualmode())<CR>")
 end
 
 M.lspconfig = function()

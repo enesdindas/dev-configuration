@@ -30,4 +30,6 @@ if vim.fn.filereadable(vim.fn.stdpath "config" .. "/lua/custom/init.lua") == 1 t
 end
 vim.g.copilot_assume_mapped = true
 vim.g.tokyonight_style = "night"
-vim.cmd[[colorscheme tokyonight]]
+vim.g.loaded_perl_provider = 0
+-- vim.cmd[[colorscheme tokyonight]]
+vim.cmd[[colorscheme dracula]]
