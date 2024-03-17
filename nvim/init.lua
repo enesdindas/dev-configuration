@@ -1,35 +1,24 @@
-local present, impatient = pcall(require, "impatient")
+require "core"
 
-if present then
-   impatient.enable_profile()
+local custom_init_path = vim.api.nvim_get_runtime_file("lua/custom/init.lua", false)[1]
+
+if custom_init_path then
+  dofile(custom_init_path)
 end
 
-local core_modules = {
-   "core.options",
-   "core.autocmds",
-   "core.mappings",
-}
+require("core.utils").load_mappings()
 
-for _, module in ipairs(core_modules) do
-   local ok, err = pcall(require, module)
-   if not ok then
-      error("Error loading " .. module .. "\n\n" .. err)
-   end
+local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
+
+-- bootstrap lazy.nvim!
+if not vim.loop.fs_stat(lazypath) then
+  require("core.bootstrap").lazy(lazypath)
 end
 
--- check if custom init.lua file exists
-if vim.fn.filereadable(vim.fn.stdpath "config" .. "/lua/custom/init.lua") == 1 then
-   -- try to call custom init, if not successful, show error
-   local ok, err = pcall(require, "custom")
-
-   if not ok then
-      vim.notify("Error loading custom/init.lua\n\n" .. err)
-   end
-
-   return
-end
+vim.opt.mouse = ""
+dofile(vim.g.base46_cache .. "defaults")
+vim.opt.rtp:prepend(lazypath)
 vim.g.copilot_assume_mapped = true
 vim.g.tokyonight_style = "night"
 vim.g.loaded_perl_provider = 0
--- vim.cmd[[colorscheme tokyonight]]
-vim.cmd[[colorscheme dracula]]
+require "plugins"
