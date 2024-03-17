@@ -1,8 +1,3 @@
-# Heading to Nvchad
-I was heavily impressed by [NvChad](https://nvchad.com/) and created this repo by personalized their setup. I will no longer personalize their configuration and directly use [NvChad](https://nvchad.com/).
-
-The last neovim version you can use this repo with is 0.7.2
-
 # Dev Configuration
 
 ## Installation
